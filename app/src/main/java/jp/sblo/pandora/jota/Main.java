@@ -2475,6 +2475,7 @@ public class Main extends Activity implements JotaDocumentWatcher, ShortcutListe
         if (mBootSettings.hideSoftkeyIS01) {
             IS01FullScreen.setFullScreenOnIS01();
         }
+        KeywordHighlght.loadHighlight(this, "lol.java");
     }
 
     private OnClickListener mOnClickSave = new OnClickListener() {
