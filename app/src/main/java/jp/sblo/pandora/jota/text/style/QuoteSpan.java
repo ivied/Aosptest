@@ -16,12 +16,13 @@
 
 package jp.sblo.pandora.jota.text.style;
 
-import jp.sblo.pandora.jota.text.Layout;
-import jp.sblo.pandora.jota.text.TextUtils;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Parcel;
 import android.text.ParcelableSpan;
+import android.text.style.LeadingMarginSpan;
+
+import jp.sblo.pandora.jota.text.TextUtils;
 
 public class QuoteSpan implements LeadingMarginSpan, ParcelableSpan {
     private static final int STRIPE_WIDTH = 2;
@@ -47,11 +48,19 @@ public class QuoteSpan implements LeadingMarginSpan, ParcelableSpan {
         return TextUtils.QUOTE_SPAN;
     }
 
+    public int getSpanTypeIdInternal() {
+        return android.text.TextUtils.QUOTE_SPAN;
+    }
+
     public int describeContents() {
         return 0;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
+        writeToParcelInternal(dest, flags);
+    }
+
+    public void writeToParcelInternal(Parcel dest, int flags) {
         dest.writeInt(mColor);
     }
 
@@ -66,7 +75,7 @@ public class QuoteSpan implements LeadingMarginSpan, ParcelableSpan {
     public void drawLeadingMargin(Canvas c, Paint p, int x, int dir,
                                   int top, int baseline, int bottom,
                                   CharSequence text, int start, int end,
-                                  boolean first, Layout layout) {
+                                  boolean first, android.text.Layout layout) {
         Paint.Style style = p.getStyle();
         int color = p.getColor();
 

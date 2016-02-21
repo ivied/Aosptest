@@ -16,11 +16,12 @@
 
 package jp.sblo.pandora.jota.text.style;
 
-import jp.sblo.pandora.jota.text.TextUtils;
 import android.os.Parcel;
 import android.text.ParcelableSpan;
 import android.text.TextPaint;
 import android.text.style.CharacterStyle;
+
+import jp.sblo.pandora.jota.text.TextUtils;
 
 public class BackgroundColorSpan extends CharacterStyle
         implements UpdateAppearance, ParcelableSpan {
@@ -37,6 +38,14 @@ public class BackgroundColorSpan extends CharacterStyle
 
     public int getSpanTypeId() {
         return TextUtils.BACKGROUND_COLOR_SPAN;
+    }
+
+    @Override public int getSpanTypeIdInternal() {
+        return getSpanTypeId();
+    }
+
+    public void writeToParcelInternal(Parcel dest, int flags) {
+        dest.writeInt(mColor);
     }
 
     public int describeContents() {

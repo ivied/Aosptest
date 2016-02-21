@@ -16,8 +16,6 @@
 
 package jp.sblo.pandora.jota.text;
 
-import java.lang.reflect.Array;
-
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Build;
@@ -30,7 +28,8 @@ import android.text.SpanWatcher;
 import android.text.Spannable;
 import android.text.Spanned;
 import android.text.TextWatcher;
-import android.util.Log;
+
+import java.lang.reflect.Array;
 
 /**
  * This is the class for text whose content and markup can both be changed.
@@ -1070,6 +1069,16 @@ implements CharSequence, GetChars, Spannable, Editable, Appendable,
 //        }
     }
 
+    @Override
+    public void drawTextRun(Canvas c, int start, int end, int contextStart, int contextEnd, float x, float y, boolean isRtl, Paint p) {
+
+    }
+
+    @Override
+    public float getTextRunAdvances(int start, int end, int contextStart, int contextEnd, boolean isRtl, float[] advances, int advancesIndex, Paint paint) {
+        return 0;
+    }
+
     /**
      * Don't call this yourself -- exists for Paint to use internally.
      * {@hide}
@@ -1135,78 +1144,7 @@ implements CharSequence, GetChars, Spannable, Editable, Appendable,
         return ret;
     }
 
-    @Override
-    public void drawTextRun(Canvas c, int start, int end,
-            int contextStart, int contextEnd,
-            float x, float y, int flags, Paint p) {
-        checkRange("drawTextRun", start, end);
-/*
-        int contextLen = contextEnd - contextStart;
-        int len = end - start;
-        if (contextEnd <= mGapStart) {
-            c.drawTextRun(mText, start, len, contextStart, contextLen, x, y, flags, p);
-        } else if (contextStart >= mGapStart) {
-            c.drawTextRun(mText, start + mGapLength, len, contextStart + mGapLength,
-                    contextLen, x, y, flags, p);
-        } else {
-            char[] buf = TextUtils.obtain(contextLen);
-            getChars(contextStart, contextEnd, buf, 0);
-            c.drawTextRun(buf, start - contextStart, len, 0, contextLen, x, y, flags, p);
-            TextUtils.recycle(buf);
-        }
-        */
-    }
-    @Override
-    public float getTextRunAdvances(int start, int end, int contextStart, int contextEnd, int flags,
-            float[] advances, int advancesPos, Paint p) {
 
-        float ret=0;
-/*
-        int contextLen = contextEnd - contextStart;
-        int len = end - start;
-
-        if (end <= mGapStart) {
-            ret = p.getTextRunAdvances(mText, start, len, contextStart, contextLen,
-                    flags, advances, advancesPos);
-        } else if (start >= mGapStart) {
-            ret = p.getTextRunAdvances(mText, start + mGapLength, len,
-                    contextStart + mGapLength, contextLen, flags, advances, advancesPos);
-        } else {
-            char[] buf = TextUtils.obtain(contextLen);
-            getChars(contextStart, contextEnd, buf, 0);
-            ret = p.getTextRunAdvances(buf, start - contextStart, len,
-                    0, contextLen, flags, advances, advancesPos);
-            TextUtils.recycle(buf);
-        }
-*/
-        return ret;
-    }
-
-    @Override
-    public float getTextRunAdvances(int start, int end, int contextStart, int contextEnd, int flags,
-            float[] advances, int advancesPos, Paint p, int reserved) {
-
-        float ret=0;
-/*
-        int contextLen = contextEnd - contextStart;
-        int len = end - start;
-
-        if (end <= mGapStart) {
-            ret = p.getTextRunAdvances(mText, start, len, contextStart, contextLen,
-                    flags, advances, advancesPos, reserved);
-        } else if (start >= mGapStart) {
-            ret = p.getTextRunAdvances(mText, start + mGapLength, len,
-                    contextStart + mGapLength, contextLen, flags, advances, advancesPos, reserved);
-        } else {
-            char[] buf = TextUtils.obtain(contextLen);
-            getChars(contextStart, contextEnd, buf, 0);
-            ret = p.getTextRunAdvances(buf, start - contextStart, len,
-                    0, contextLen, flags, advances, advancesPos, reserved);
-            TextUtils.recycle(buf);
-        }
-*/
-        return ret;
-    }
     @Override
     public int getTextRunCursor(int contextStart, int contextEnd, int flags, int offset,
             int cursorOpt, Paint p) {

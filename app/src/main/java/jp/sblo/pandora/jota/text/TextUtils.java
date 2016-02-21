@@ -16,28 +16,6 @@
 
 package jp.sblo.pandora.jota.text;
 
-import java.util.Iterator;
-import java.util.regex.Pattern;
-
-import jp.sblo.pandora.jota.text.style.AlignmentSpan;
-import jp.sblo.pandora.jota.text.style.BackgroundColorSpan;
-import jp.sblo.pandora.jota.text.style.BulletSpan;
-import jp.sblo.pandora.jota.text.style.ForegroundColorSpan;
-import jp.sblo.pandora.jota.text.style.LeadingMarginSpan;
-import jp.sblo.pandora.jota.text.style.MetricAffectingSpan;
-import jp.sblo.pandora.jota.text.style.QuoteSpan;
-import jp.sblo.pandora.jota.text.style.RelativeSizeSpan;
-import jp.sblo.pandora.jota.text.style.ReplacementSpan;
-import jp.sblo.pandora.jota.text.style.ScaleXSpan;
-import jp.sblo.pandora.jota.text.style.StrikethroughSpan;
-import jp.sblo.pandora.jota.text.style.StyleSpan;
-import jp.sblo.pandora.jota.text.style.SubscriptSpan;
-import jp.sblo.pandora.jota.text.style.SuperscriptSpan;
-import jp.sblo.pandora.jota.text.style.TextAppearanceSpan;
-import jp.sblo.pandora.jota.text.style.TypefaceSpan;
-import jp.sblo.pandora.jota.text.style.URLSpan;
-import jp.sblo.pandora.jota.text.style.UnderlineSpan;
-import android.content.res.Resources;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.AndroidCharacter;
@@ -49,11 +27,30 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.SpannedString;
-import android.text.TextPaint;
 import android.text.style.CharacterStyle;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.ScaleXSpan;
+import android.text.style.StrikethroughSpan;
+import android.text.style.StyleSpan;
+import android.text.style.SubscriptSpan;
+import android.text.style.SuperscriptSpan;
+import android.text.style.TextAppearanceSpan;
+import android.text.style.TypefaceSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Printer;
 
-import com.android.internal.R;
+import java.util.Iterator;
+import java.util.regex.Pattern;
+
+import jp.sblo.pandora.jota.text.style.AlignmentSpan;
+import jp.sblo.pandora.jota.text.style.BackgroundColorSpan;
+import jp.sblo.pandora.jota.text.style.BulletSpan;
+import jp.sblo.pandora.jota.text.style.ForegroundColorSpan;
+import jp.sblo.pandora.jota.text.style.LeadingMarginSpan;
+import jp.sblo.pandora.jota.text.style.QuoteSpan;
+import jp.sblo.pandora.jota.text.style.ReplacementSpan;
+import jp.sblo.pandora.jota.text.style.URLSpan;
+
 public class TextUtils {
     private TextUtils() { /* cannot be instantiated */ }
 
@@ -659,17 +656,17 @@ public class TextUtils {
                     readSpan(p, sp, new ForegroundColorSpan(p));
                     break;
 
-                case RELATIVE_SIZE_SPAN:
-                    readSpan(p, sp, new RelativeSizeSpan(p));
-                    break;
+                    case RELATIVE_SIZE_SPAN:
+                        readSpan(p, sp, new RelativeSizeSpan(p));
+                        break;
 
-                case SCALE_X_SPAN:
-                    readSpan(p, sp, new ScaleXSpan(p));
-                    break;
+                    case SCALE_X_SPAN:
+                        readSpan(p, sp, new ScaleXSpan(p));
+                        break;
 
-                case STRIKETHROUGH_SPAN:
-                    readSpan(p, sp, new StrikethroughSpan(p));
-                    break;
+                    case STRIKETHROUGH_SPAN:
+                        readSpan(p, sp, new StrikethroughSpan(p));
+                        break;
 
                 case UNDERLINE_SPAN:
                     readSpan(p, sp, new UnderlineSpan(p));

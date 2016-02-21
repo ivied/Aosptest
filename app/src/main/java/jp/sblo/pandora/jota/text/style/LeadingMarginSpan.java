@@ -16,12 +16,10 @@
 
 package jp.sblo.pandora.jota.text.style;
 
-import jp.sblo.pandora.jota.text.Layout;
-import jp.sblo.pandora.jota.text.TextUtils;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.os.Parcel;
 import android.text.ParcelableSpan;
+
+import jp.sblo.pandora.jota.text.TextUtils;
 
 /**
  * A paragraph style affecting the leading margin. There can be multiple leading
@@ -61,11 +59,6 @@ extends ParagraphStyle
      * @param first true if this is the first line of its paragraph
      * @param layout the layout containing this line
      */
-    public void drawLeadingMargin(Canvas c, Paint p,
-                                  int x, int dir,
-                                  int top, int baseline, int bottom,
-                                  CharSequence text, int start, int end,
-                                  boolean first, Layout layout);
 
 
     /**
@@ -121,11 +114,20 @@ extends ParagraphStyle
             return TextUtils.LEADING_MARGIN_SPAN;
         }
 
+        public int getSpanTypeIdInternal() {
+            return android.text.TextUtils.LEADING_MARGIN_SPAN;
+        }
+
         public int describeContents() {
             return 0;
         }
 
         public void writeToParcel(Parcel dest, int flags) {
+            writeToParcelInternal(dest, flags);
+        }
+
+        /** @hide */
+        public void writeToParcelInternal(Parcel dest, int flags) {
             dest.writeInt(mFirst);
             dest.writeInt(mRest);
         }
@@ -134,12 +136,6 @@ extends ParagraphStyle
             return first ? mFirst : mRest;
         }
 
-        public void drawLeadingMargin(Canvas c, Paint p,
-                                      int x, int dir,
-                                      int top, int baseline, int bottom,
-                                      CharSequence text, int start, int end,
-                                      boolean first, Layout layout) {
-            ;
-        }
+
     }
 }

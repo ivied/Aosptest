@@ -16,13 +16,14 @@
 
 package jp.sblo.pandora.jota.text.style;
 
-import jp.sblo.pandora.jota.text.Layout;
-import jp.sblo.pandora.jota.text.TextUtils;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Parcel;
 import android.text.ParcelableSpan;
 import android.text.Spanned;
+
+import jp.sblo.pandora.jota.text.Layout;
+import jp.sblo.pandora.jota.text.TextUtils;
 
 public class BulletSpan implements LeadingMarginSpan, ParcelableSpan {
     private final int mGapWidth;
@@ -58,6 +59,16 @@ public class BulletSpan implements LeadingMarginSpan, ParcelableSpan {
 
     public int getSpanTypeId() {
         return TextUtils.BULLET_SPAN;
+    }
+
+    @Override public int getSpanTypeIdInternal() {
+        return getSpanTypeId();
+    }
+
+    public void writeToParcelInternal(Parcel dest, int flags) {
+        dest.writeInt(mGapWidth);
+        dest.writeInt(mWantColor ? 1 : 0);
+        dest.writeInt(mColor);
     }
 
     public int describeContents() {

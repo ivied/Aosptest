@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 17
+    compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
         applicationId "ru.ivied.aosptest"
         minSdkVersion 17
-        targetSdkVersion 23
+        targetSdkVersion 17
         versionCode 1
         versionName "1.0"
     }

@@ -16,10 +16,11 @@
 
 package jp.sblo.pandora.jota.text.style;
 
-import jp.sblo.pandora.jota.text.Layout;
-import jp.sblo.pandora.jota.text.TextUtils;
 import android.os.Parcel;
 import android.text.ParcelableSpan;
+
+import jp.sblo.pandora.jota.text.Layout;
+import jp.sblo.pandora.jota.text.TextUtils;
 
 public interface AlignmentSpan extends ParagraphStyle {
     public Layout.Alignment getAlignment();
@@ -36,6 +37,14 @@ public interface AlignmentSpan extends ParagraphStyle {
 
         public int getSpanTypeId() {
             return TextUtils.ALIGNMENT_SPAN;
+        }
+
+        public int getSpanTypeIdInternal() {
+            return android.text.TextUtils.ALIGNMENT_SPAN;
+        }
+
+        public void writeToParcelInternal(Parcel dest, int flags) {
+            dest.writeString(mAlignment.name());
         }
 
         public int describeContents() {

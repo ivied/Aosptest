@@ -2969,6 +2969,16 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
             c.drawText(mChars, start + mStart, end - start, x, y, p);
         }
 
+        @Override
+        public void drawTextRun(Canvas c, int start, int end, int contextStart, int contextEnd, float x, float y, boolean isRtl, Paint p) {
+
+        }
+
+        @Override
+        public float getTextRunAdvances(int start, int end, int contextStart, int contextEnd, boolean isRtl, float[] advances, int advancesIndex, Paint paint) {
+            return 0;
+        }
+
         public float measureText(int start, int end, Paint p) {
             return p.measureText(mChars, start + mStart, end - start);
         }
@@ -2977,32 +2987,7 @@ public class TextView extends View implements ViewTreeObserver.OnPreDrawListener
             return p.getTextWidths(mChars, start + mStart, end - start, widths);
         }
 
-        public void drawTextRun(Canvas c, int start, int end,
-                int contextStart, int contextEnd, float x, float y, int flags, Paint p) {
-            int count = end - start;
-            int contextCount = contextEnd - contextStart;
-            c.drawTextRun(mChars, start + mStart, count, contextStart + mStart,
-                    contextCount, x, y, flags, p);
-        }
-        public float getTextRunAdvances(int start, int end, int contextStart,
-                int contextEnd, int flags, float[] advances, int advancesIndex,
-                Paint p) {
-            int count = end - start;
-            int contextCount = contextEnd - contextStart;
-            return p.getTextRunAdvances(mChars, start + mStart, count,
-                    contextStart + mStart, contextCount, flags, advances,
-                    advancesIndex);
-        }
 
-        public float getTextRunAdvances(int start, int end, int contextStart,
-                int contextEnd, int flags, float[] advances, int advancesIndex,
-                Paint p, int reserved) {
-            int count = end - start;
-            int contextCount = contextEnd - contextStart;
-            return p.getTextRunAdvances(mChars, start + mStart, count,
-                    contextStart + mStart, contextCount, flags, advances,
-                    advancesIndex, reserved);
-        }
 
         public int getTextRunCursor(int contextStart, int contextEnd, int flags,
                 int offset, int cursorOpt, Paint p) {

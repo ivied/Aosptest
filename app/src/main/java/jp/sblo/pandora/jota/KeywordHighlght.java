@@ -1,5 +1,11 @@
 package jp.sblo.pandora.jota;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.os.Environment;
+import android.text.Spannable;
+import android.text.TextUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,11 +22,6 @@ import java.util.regex.PatternSyntaxException;
 import jp.sblo.pandora.jota.text.ArrowKeyMovementMethod;
 import jp.sblo.pandora.jota.text.SpannableStringBuilder;
 import jp.sblo.pandora.jota.text.style.ForegroundColorSpan;
-import android.content.Context;
-import android.content.res.AssetManager;
-import android.os.Environment;
-import android.text.Spannable;
-import android.text.TextUtils;
 
 public class KeywordHighlght {
 
@@ -213,9 +214,7 @@ public class KeywordHighlght {
 
         // create direcotry
         new File(USERPATH).mkdirs();
-        if ( !new File(PATH + COLOR_PATH).exists() ){
             extractFromAssets( context );
-        }
 
         File f = getKeywordFile(USERPATH,ext);
         if ( f==null ){

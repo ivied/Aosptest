@@ -16,7 +16,6 @@
 
 package jp.sblo.pandora.jota.text.style;
 
-import jp.sblo.pandora.jota.text.TextUtils;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -24,6 +23,8 @@ import android.os.Parcel;
 import android.provider.Browser;
 import android.text.ParcelableSpan;
 import android.view.View;
+
+import jp.sblo.pandora.jota.text.TextUtils;
 
 public class URLSpan extends ClickableSpan implements ParcelableSpan {
 
@@ -39,6 +40,15 @@ public class URLSpan extends ClickableSpan implements ParcelableSpan {
 
     public int getSpanTypeId() {
         return TextUtils.URL_SPAN;
+    }
+
+    @Override public int getSpanTypeIdInternal() {
+        return TextUtils.URL_SPAN;
+    }
+
+    @Override
+    public void writeToParcelInternal(Parcel dest, int flags) {
+        dest.writeString(mURL);
     }
 
     public int describeContents() {
